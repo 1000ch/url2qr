@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "URL2QR",
+  "version": "0.0.0",
+  "description": "",
+  "permissions": [
+    "tabs",
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "page": "/html/background.html"
+  },
+  "browser_action": {
+    "default_title": "URL2QR",
+    "default_popup": "/html/popup.html"
+  },
+  "offline_enabled": false,
+  "author": "1000ch"
+}
