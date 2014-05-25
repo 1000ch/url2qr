@@ -1,11 +1,10 @@
 {
   "manifest_version": 2,
   "name": "URL2QR",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "permissions": [
     "tabs",
-    "storage",
     "http://*/*",
     "https://*/*"
   ],
