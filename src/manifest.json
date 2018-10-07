@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "URL2QR",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Generate QR code from URL.",
   "icons": {
     "16": "img/icon32.png",
