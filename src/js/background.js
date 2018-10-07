@@ -1,21 +1,21 @@
 // when the active tab is changed
-chrome.tabs.onActivated.addListener(function (activeInfo) {
+chrome.tabs.onActivated.addListener(activeInfo => {
   Background.cacheActiveTab(activeInfo.tabId);
 });
 
 // when a tab is updated
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (Background.activeTabId === tabId) {
     Background.cacheActiveTab(tabId);
   }
 });
 
 // when current window is switched
-chrome.windows.onFocusChanged.addListener(function (windowId) {
+chrome.windows.onFocusChanged.addListener((windowId) => {
   chrome.windows.getCurrent({
     populate: true
-  }, function (window) {
-    window.tabs.forEach(function (tab) {
+  }, window => {
+    window.tabs.forEach(tab => {
       if (tab.active) {
         Background.cacheActiveTab(tab.id);
       }
@@ -23,7 +23,7 @@ chrome.windows.onFocusChanged.addListener(function (windowId) {
   });
 });
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   sendResponse({
     tabId: Background.activeTabId,
     tabUrl: Background.activeTabUrl,
@@ -31,13 +31,13 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   });
 });
 
-var Background = {
+const Background = {
   activeTabId: 0,
   activeTabUrl: '',
   activeTabTitle: '',
-  cacheActiveTab: function (tabId) {
+  cacheActiveTab: tabId => {
     Background.activeTabId = tabId;
-    chrome.tabs.get(tabId, function (tab) {
+    chrome.tabs.get(tabId, tab => {
       Background.activeTabUrl = tab.url;
       Background.activeTabTitle = tab.title;
     });
